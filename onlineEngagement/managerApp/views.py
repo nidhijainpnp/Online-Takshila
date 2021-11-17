@@ -24,15 +24,15 @@ def loginForm(request):
     if (not(emailId and password)):
         messages.error(request, "One of the field is empty")
         return render(request, 'login_page.html')
-    client = CustomUser.objects.filter(email=emailId, password=password).first()
-    if not client:
-        messages.error(request, "INVALID")
+    user = CustomUser.objects.filter(email=emailId, password=password).first()
+    if not user:
+        user.error(request, "INVALID")
         return render(request,'login_page.html')
     
     # login(request, client)
-    if(client.user_type == "student"):
+    if(user.user_type == "student"):
         return redirect('../student/')
-    elif(client.user_type == "faculty"):
+    elif(user.user_type == "faculty"):
         return redirect('../student/')
     
     return render(request, 'home.html')
@@ -61,11 +61,11 @@ def signUP(request):
     user.last_name = lname
     user.save()
     print(user.user_type+"\n\n\n")
-    # if category == "student" :
-    #     Student.objects.create(userType =user)
-    # elif category== "faculty":
-    #     Staff.objects.create(userType = user)
-    render(request, 'login_page.html')
+    if category == "student" :
+        Student.objects.create(admin =user)
+    elif category== "faculty":
+        Staff.objects.create(admin = user)
+    return render(request, 'login_page.html')
 
 
     
