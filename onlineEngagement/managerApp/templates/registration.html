@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untitled</title>
+    <title>SignUp</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -131,37 +131,38 @@
 
 
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <!-- <input class="form-control mr-sm-2" type="login" placeholder="login" aria-label="login">-->
-
-            <!--<input class="form-control mr-sm-2" type="Register" placeholder="Register" aria-label="Register">-->
-            <a href="/login" class="btn btn-outline-success my-1 mx-2">Login Here</a>
-            <!--<input class="form-control mr-sm-2" type="register" placeholder="register" aria-label="register">-->
-
-        </form>
     </div>
 </nav>
 
 
 <div class="login-dark form-inline py-0 mx-4 my-4 pl-4 pr-4">
-    <form action="{% url 'doRegistration' %}" method="get">
+
+    <form  action="{% url 'signUP' %}" method="get">
         {% csrf_token %}
 
         <h1 class="text-center">Signup</h1>
-        <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
-        <div class="form-group"><input class="form-control mb-2" type="text" name="first_name" placeholder="First Name">
-        </div>
-        <div class="form-group"><input class="form-control mb-2" type="text" name="last_name" placeholder="Last Name">
-        </div>
 
-        <div class="form-group"><input class="form-control mb-2" type="email" name="email" placeholder="Email"></div>
-        <div class="form-group"><input class="form-control mb-2" type="password" name="password" placeholder="Password">
+        <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
+        <div class="form-group">
+            <label for="category">Choose a category</label>&nbsp;&nbsp;
+            <select name="category" id="category">
+                <option disabled selected value> -- select an option --</option>
+                <option value="student">Student</option>
+                <option value="faculty">Faculty</option>
+            </select>
         </div>
-        <div class="form-group"><input class="form-control mb-2" type="password" name="confirmPassword"
-                placeholder="Confirm Password"></div>
-        <div class="form-group"><button class="btn btn-primary btn-block mt-2 ml-2" type="submit">Register</button>
-        </div>
+        <input class="form-control mb-2" type="text" name="fname" placeholder="First Name">
+        <input class="form-control mb-2" type="text" name="lname" placeholder="Last Name">
+
+
+        <input class="form-control mb-2" type="email" name="email" placeholder="Email Id">
+        <input class="form-control mb-2" type="password" name="password" placeholder="Password">
+
+        <input class="form-control mb-2" type="password" name="confirmPassword" placeholder="Confirm Password">
+        <button class="btn btn-primary btn-block mt-2 ml-2" type="submit">Register</button>
+
     </form>
+
 </div>
 {% comment %} Display Messages {% endcomment %}
 {% if messages %}
