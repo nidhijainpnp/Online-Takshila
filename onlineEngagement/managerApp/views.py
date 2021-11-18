@@ -29,9 +29,9 @@ def loginForm(request):
         user.error(request, "INVALID")
         return render(request,'login_page.html')
     
-    # login(request, client)
+    login(request, user)
     if(user.user_type == "student"):
-        return redirect('../student/')
+        return redirect('../student_home/')
     elif(user.user_type == "faculty"):
         return redirect('../student/')
     
@@ -60,11 +60,11 @@ def signUP(request):
     user.first_name = fname
     user.last_name = lname
     user.save()
-    print(user.user_type+"\n\n\n")
-    if category == "student" :
-        Student.objects.create(admin =user)
-    elif category== "faculty":
-        Staff.objects.create(admin = user)
+    # print(user.user_type+"\n\n\n")
+    # if category == "student" :
+    #     Student.objects.create(admin =user)
+    # elif category== "faculty":
+    #     Staff.objects.create(admin = user)
     return render(request, 'login_page.html')
 
 

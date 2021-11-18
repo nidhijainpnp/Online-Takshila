@@ -1,4 +1,6 @@
 from django.urls import path
+
+from . import studentViews
 from . import views
 urlpatterns = [
     path('', views.home, name="home"),
@@ -8,6 +10,6 @@ urlpatterns = [
     path('signUp/',views.signUP, name = "signUP"),    
     path('logout_user/', views.logout_user, name="logout"),
     #need to be removed later
-    path('student/',views.studentPage, name = "studentPage"),
+    path('student_home/',studentViews.student_home, name = "studentPage"),
 
 ]

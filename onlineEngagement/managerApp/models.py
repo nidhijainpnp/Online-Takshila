@@ -20,22 +20,22 @@ programChoice = (
     ('B.Tech-Civil','B.Tech-Civil'),
 )
 
-basketName = (
-    ('IC', 'Institute-Core'),
-    ('CSE-Dept', 'CSE-Dept'),
-    ('Elec-Dept', 'Elec-Dept'),
-    ('Mech-Dept', 'Mech-Dept'),
-    ('Civil-Dept', 'Civil-Dept'),
-    ('HSS Core', 'Humanity Core'),
-    ('HSS Elec','Humanity Elective'),
-)
+# basketName = (
+#     ('IC', 'Institute-Core'),
+#     ('CSE-Dept', 'CSE-Dept'),
+#     ('Elec-Dept', 'Elec-Dept'),
+#     ('Mech-Dept', 'Mech-Dept'),
+#     ('Civil-Dept', 'Civil-Dept'),
+#     ('HSS Core', 'Humanity Core'),
+#     ('HSS Elec','Humanity Elective'),
+# )
 
-class AcademicYear(models.Model):
-    id = models.AutoField(primary_key=True)
-    startYear = models.DateField('Start of Academic Year')
-    EndYear = models.DateField('End of Academic Year')
-    created = models.DateTimeField(auto_now_add=True)
-    lastModified = models.DateTimeField(auto_now=True)
+# class AcademicYear(models.Model):
+#     id = models.AutoField(primary_key=True)
+#     startYear = models.DateField('Start of Academic Year')
+#     EndYear = models.DateField('End of Academic Year')
+#     created = models.DateTimeField(auto_now_add=True)
+#     lastModified = models.DateTimeField(auto_now=True)
 
 
 # adding field of user_type
@@ -58,19 +58,24 @@ class HOD(models.Model):
 class Staff(models.Model):
     id = models.AutoField(primary_key=True)
     admin = models.OneToOneField(CustomUser, on_delete = models.CASCADE)
-    fName = models.CharField(max_length=20)
-    lNmae = models.CharField(max_length=20)
-    gender = models.CharField(max_length=10,choices = sexChoice)
+    # gender = models.CharField(max_length=10,choices = sexChoice)
 #    contactNo = PhoneNumberField(unique = True, null = False, blank = False)
     created = models.DateTimeField(auto_now_add=True)
     lastModified = models.DateTimeField(auto_now=True)
 
+
 # Courses View
+class Program(models.Model):
+    id = models.AutoField(primary_key=True)
+    programName = models.CharField(max_length=50,choices=programChoice)
+    created = models.DateTimeField(auto_now_add=True)
+    lastModified = models.DateTimeField(auto_now=True)
+
 class Courses(models.Model):
     id = models.AutoField(primary_key=True)
     courseName = models.CharField(max_length=255)
+    programId = models.ForeignKey(Program,on_delete=models.CASCADE, default=1)
     staffId = models.ForeignKey(Staff, on_delete=models.CASCADE)
-    basketName = models.CharField(max_length=20,choices=basketName)
     created = models.DateTimeField(auto_now_add=True)
     lastModified = models.DateTimeField(auto_now=True)
 
@@ -78,23 +83,20 @@ class Courses(models.Model):
 class Student(models.Model):
     id = models.AutoField(primary_key=True)
     admin = models.OneToOneField(CustomUser, on_delete = models.CASCADE)
-    fName = models.CharField(max_length=20)
-    lNmae = models.CharField(max_length=20)
     gender = models.CharField(max_length=10,choices = sexChoice)
   #  contactNo = PhoneNumberField(unique = True, null = False, blank = False)
     created = models.DateTimeField(auto_now_add=True)
     lastModified = models.DateTimeField(auto_now=True)
     profilePic = models.ImageField(null=True)
-    programName = models.CharField(max_length=20,choices=programChoice)
-    courseId = models.ForeignKey(Courses, on_delete=models.CASCADE)
-    academicYrId = models.ForeignKey(AcademicYear, on_delete=models.CASCADE)
+    programId = models.ForeignKey(Program, on_delete=models.DO_NOTHING, default=1)
+    # academicYrId = models.ForeignKey(AcademicYear, on_delete=models.CASCADE)
 
-# TODO create models for Attendance and Results 
+
 class Attendance(models.Model):
     id = models.AutoField(primary_key=True)
-    subject_id = models.ForeignKey(Courses, on_delete=models.DO_NOTHING)
+    course_id = models.ForeignKey(Courses, on_delete=models.DO_NOTHING)
     date = models.DateField()
-    academicYr_id = models.ForeignKey(AcademicYear, on_delete=models.CASCADE)
+    # academicYr_id = models.ForeignKey(AcademicYear, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     lastModified = models.DateTimeField(auto_now=True)
 
@@ -102,14 +104,15 @@ class AttendanceReport(models.Model):
     id = models.AutoField(primary_key=True)
     student_id = models.ForeignKey(Student, on_delete=models.DO_NOTHING)
     attendance_id = models.ForeignKey(Attendance, on_delete=models.CASCADE)
+    is_present = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     lastModified = models.DateTimeField(auto_now=True)
 
 class Result(models.Model):
     id = models.AutoField(primary_key=True)
     student_id = models.ForeignKey(Student, on_delete=models.CASCADE)
-    subject_id = models.ForeignKey(Courses, on_delete=models.CASCADE, default=1)
-    subject_marks = models.FloatField(default=0.0)
+    course_id = models.ForeignKey(Courses, on_delete=models.CASCADE, default=1)
+    course_marks = models.FloatField(default=0.0)
     created = models.DateTimeField(auto_now_add=True)
     lastModified = models.DateTimeField(auto_now=True)
 
@@ -121,9 +124,8 @@ def create_user_profile(sender, instance, created, **kwargs):
             Staff.objects.create(admin=instance)
         if instance.user_type == "student":
             Student.objects.create(admin=instance,
-                                    courseId=Courses.objects.get(id=1),
-                                    academicYrId=AcademicYear.objects.get(id=1),
-                                    programName="",
+                                    programId=Program.objects.get(id=1),
+                                    # academicYrId=AcademicYear.objects.get(id=1),
                                     profilePic="",
                                     gender="")
      
