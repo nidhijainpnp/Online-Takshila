@@ -24,32 +24,31 @@
                 with font-awesome or any other icon font library -->
             
             <li class="nav-item">
-              
-              <a href=# class="nav-link {% if request.path == student_home %} active {% endif %}">
+              {% url 'student_home' as student_home %}
+              <a href="{{student_home}}" class="nav-link {% if request.path == student_home %} active {% endif %}">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Home
-                  {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
                 </p>
               </a>
             </li>
 
             <li class="nav-item">
-              <a href="#" class="nav-link {% if request.path == student_view_attendance %} active {% endif %}">
+              {% url 'student_attendance' as student_attendance %}
+              <a href="{{student_attendance}}" class="nav-link {% if request.path == student_attendance %} active {% endif %}">
                 <i class="nav-icon fas fa-calendar-alt"></i>
                 <p>
                   View Attendance
-                  {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
                 </p>
               </a>
             </li>
 
             <li class="nav-item">
-                <a href="#" class="nav-link {% if request.path == student_view_attendance %} active {% endif %}">
+                {% url 'student_result' as student_result %}
+                <a href="{{student_result}} " class="nav-link {% if request.path == student_result %} active {% endif %}">
                   <i class="nav-icon fas fa-tasks"></i>
                   <p>
                     View Marks
-                    {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
                   </p>
                 </a>
               </li>

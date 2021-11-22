@@ -5,7 +5,7 @@ from django.contrib import messages
 import datetime
 
 def student_result(request):
-    student = Student.objects.get(userType=request.user.id)
+    student = Student.objects.get(admin=request.user.id)
     student_result = Result.objects.filter(student_id=student.id)
     context = {
         "student_result":student_result,
@@ -13,7 +13,7 @@ def student_result(request):
     return render(request, "student/result.html", context)
 
 def student_attendance(request):
-    student = Student.objects.get(userType=request.user.id)
+    student = Student.objects.get(admin=request.user.id)
     courses = Courses.objects.filter(programId = student.programId)
     context = {
         "courses" : courses
@@ -39,7 +39,7 @@ def view_attendance(request):
         "course" : course,
         "report" : report
     }
-    return render(request, 'attendance_data.html',context)
+    return render(request, 'student/attendance_data.html',context)
 
 def student_home(request):
     student = Student.objects.get(admin=request.user.id)
