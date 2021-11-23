@@ -135,57 +135,6 @@
                 alert("Error in Fetching Students.")
             })
 
-            // Save Attendance Data to Database
-            /*
-            $(document).on("click", "#save_attendance", function(){
-                
-                //Disabling the Button while data is being saved in Server
-                $(this).attr("disabled", "disabled")
-                $(this).text("Saving Attendance Data...")
-
-                //console.log("SAVE")
-                var student_data=$("input[name='student_data[]'").map(function(){ 
-                        if($(this).is(":checked")){
-                            return {"id":$(this).val(), "status":1}; // Getting ID and Value of Students
-                        }
-                        else
-                        {
-                            return {"id":$(this).val(), "status":0}; // Getting ID and Value of Students
-                        }
-                    }).get()
-                var attendance_date=$("#attendance_date").val();
-                var subject_id=$("#subject").val();
-                var session_year_id=$("#session_year").val();
-                //console.log(attendance_date)
-                //console.log(student_data);
-                student_data = JSON.stringify(student_data)
-
-                // Saving Attendance Data into Database
-
-                
-
-                
-                .done(function(response){
-                    
-                    if(response=="OK")
-                    {
-                        alert("Attendance Saved!")
-                    }
-                    else
-                    {
-                        alert("Failed to Save Attendance!")
-                    }
-                    location.reload()
-                    
-                    //console.log(response)
-                })
-
-                .fail(function(){
-                    alert("Error in Saving Students Attendance Data.")
-                })
-
-            })
-            */
 
         })
     })
