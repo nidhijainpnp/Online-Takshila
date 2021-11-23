@@ -1,0 +1,73 @@
+{% load static %}
+
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <!-- Brand Logo -->
+        <span class="brand-text font-weight-light">Takshila</span>
+      
+
+
+      <!-- Sidebar -->
+
+
+      <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+          <div class="image">
+            <img src="{% static 'dist/img/logo.png' %}" class="img-circle elevation-2 ml-5" alt="User Image" style="max-width:100%;">
+          </div>
+         
+        </div>
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
+                with font-awesome or any other icon font library -->
+            
+            <li class="nav-item">
+              {% url 'faculty_home' as faculty_home %}
+              <a href="{{ faculty_home }}" class="nav-link {% if request.path == faculty_home %} active {% endif %}">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Home
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'take_attendance' as take_attendance %}
+              <a href="{{ take_attendance }}" class="nav-link {% if request.path == take_attendance %} active {% endif %}">
+                <i class="nav-icon fas fa-calendar-plus"></i>
+                <p>
+                  Take Attendance
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'update_attendance' as update_attendance %}
+              <a href="{{ update_attendance }}" class="nav-link {% if request.path == update_attendance %} active {% endif %}">
+                <i class="nav-icon fas fa-calendar-alt"></i>
+                <p>
+                  View Update Attendance
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'add_result' as add_result %}
+              <a href="{{ add_result }}" class="nav-link {% if request.path == add_result %} active {% endif %}">
+                <i class="nav-icon fas fa-tasks"></i>
+                <p>
+                  Add Result
+                </p>
+              </a>
+            </li>
+
+           
+
+          </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>

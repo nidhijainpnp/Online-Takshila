@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Online Takshila | Student Dashboard</title>
+  <title>Online Takshila | Faculty Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -29,6 +29,8 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
+    {% comment %} For Custom CSS {% endcomment %}
+
     {% block custom_css %}
     {% endblock custom_css %}
 
@@ -46,10 +48,9 @@
         </li>
       </ul>
 
-      <h4 style="margin-left: 10px; margin-top: 5px;">Student Dashboard</h4>
+      <h4 style="margin-left: 10px; margin-top: 5px;">Online Takshila | Faculty Dashboard</h4>
 
-      <ul class="navbar-nav ml-auto"> {% comment %} used to place the settings icon at right corner {% endcomment %}
-        
+      <ul class="navbar-nav ml-auto">
       
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
@@ -58,7 +59,7 @@
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
           
-          <a href="{% url 'logout_user' %}" class="dropdown-item">
+         <a href="{% url 'logout_user' %}" class="dropdown-item">
             <i class="fas fa-power-off mr-2"></i> Logout
           </a> 
           <div class="dropdown-divider"></div>
@@ -70,13 +71,13 @@
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    {% include 'student/sidebar.html' with user=user id=id %}
+    {% include 'faculty/sidebar.html' with user=user id=id %}
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">    {% comment %}  It simply holds all visual elements and content on the page. {% endcomment %}
+    <div class="content-wrapper">
 
     <!-- Content Header (Page header) -->
-     <div class="content-header"> 
+      <div class="content-header">
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
@@ -85,10 +86,9 @@
                 {% endblock page_title %}
               </h1>
             </div><!-- /.col -->
-            <div class="col-sm-6"> 
-                    {% comment %} putting home button at right border {% endcomment %}
+            <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="{% url 'student_home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'faculty_home' %}">Home</a></li>
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -103,83 +103,46 @@
     </div>
     <!-- /.content-wrapper -->
 
+
+    
   </div>
   <!-- ./wrapper -->
 
 
 <!-- jQuery -->
-<script src="{% static "plugins/jquery/jquery.min.js"  %}"></script>  
-{% comment %} minimised version of js for compacting intp smaller files. {% endcomment %}
+<script src="{% static "plugins/jquery/jquery.min.js"  %}"></script>
 <!-- jQuery UI 1.11.4 -->
-
 <script src="{% static "plugins/jquery-ui/jquery-ui.min.js"  %}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-
-{% comment %} set of user interface interactions, effects, widgets, and themes built on top of the jQuery JavaScript Library.
- Whether you're building highly interactive web applications 
-or you just need to add a date picker to a form control, jQuery UI is the perfect choice. {% endcomment %}
-
 <script>
   $.widget.bridge('uibutton', $.ui.button)
 </script>
-
-
 <!-- Bootstrap 4 -->
 <script src="{% static "plugins/bootstrap/js/bootstrap.bundle.min.js"  %}"></script>
-{% comment %} provide compiled CSS and JS ( bootstrap.Bundled JS files ( bootstrap. bundle. js and minified bootstrap. {% endcomment %}
-
 <!-- ChartJS -->
 <script src="{% static "plugins/chart.js/Chart.min.js"  %}"></script>
-{% comment %} Chart.js is a free open-source JavaScript library for data visualization, 
-which supports 8 chart types: bar, line, area, pie, bubble, radar, polar, and scatter. {% endcomment %}
-
 <!-- Sparkline -->
 <script src="{% static "plugins/sparklines/sparkline.js"  %}"></script>
-{% comment %} generates sparklines (small inline charts) directly in the browser using
- data supplied either inline in the HTML, or via javascript. looks like heartbeat line {% endcomment %}
-
 <!-- JQVMap -->
 <script src="{% static "plugins/jqvmap/jquery.vmap.min.js"  %}"></script>
 <script src="{% static "plugins/jqvmap/maps/jquery.vmap.usa.js"  %}"></script>
-{% comment %} jVectorMap consists of two modules: maps converter written in Python and jQuery plug-in which renders maps and provides JavaScript API to control them. {% endcomment %}
-{% comment %} A jQuery plugin is simply a new method that we use to extend jQuery's prototype object. By extending the prototype object you enable all jQuery objects to inherit any methods that you add.  {% endcomment %}
-
 <!-- jQuery Knob Chart -->
 <script src="{% static "plugins/jquery-knob/jquery.knob.min.js"  %}"></script>
-{% comment %} jqxKnob represents a jQuery plugin with round shape which displays a draggable indicator within a range of values. {% endcomment %}
-
 <!-- daterangepicker -->
 <script src="{% static "plugins/moment/moment.min.js"  %}"></script>
-{% comment %} MomentJS is a JavaScript library which helps is parsing, validating, manipulating and displaying date/time in JavaScript in a very easy way.
-Moment JS allows displaying of date as per localization and in human readable format. {% endcomment %}
 <script src="{% static "plugins/daterangepicker/daterangepicker.js"  %}"></script>
-{% comment %} A JavaScript component for choosing date ranges, dates and times {% endcomment %}
-
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="{% static "plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"  %}"></script>
-{% comment %} A date/time picker component designed to work with Bootstrap 4 and Momentjs.  {% endcomment %}
-
 <!-- Summernote -->
 <script src="{% static "plugins/summernote/summernote-bs4.min.js"  %}"></script>
-{% comment %} Summernote is a JavaScript library that helps you create WYSIWYG editors online. {% endcomment %}
-
-
 <!-- overlayScrollbars -->
 <script src="{% static "plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"  %}"></script>
-{% comment %} A javascript scrollbar plugin which hides the native scrollbars and provides custom styleable overlay scrollbars,
- but keeps the native functionality and feeling. {% endcomment %}
-
 <!-- AdminLTE App -->
 <script src="{% static 'dist/js/adminlte.js'  %}"></script>
-
-
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{% static 'dist/js/pages/dashboard.js'  %}"></script>
-
-
 <!-- AdminLTE for demo purposes -->
 <script src="{% static 'dist/js/demo.js'  %}"></script>
-
 
 {% comment %} For Custom JS {% endcomment %}
 {% block custom_js %}

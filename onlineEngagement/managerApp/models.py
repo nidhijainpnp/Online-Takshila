@@ -20,22 +20,6 @@ programChoice = (
     ('B.Tech-Civil','B.Tech-Civil'),
 )
 
-# basketName = (
-#     ('IC', 'Institute-Core'),
-#     ('CSE-Dept', 'CSE-Dept'),
-#     ('Elec-Dept', 'Elec-Dept'),
-#     ('Mech-Dept', 'Mech-Dept'),
-#     ('Civil-Dept', 'Civil-Dept'),
-#     ('HSS Core', 'Humanity Core'),
-#     ('HSS Elec','Humanity Elective'),
-# )
-
-# class AcademicYear(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     startYear = models.DateField('Start of Academic Year')
-#     EndYear = models.DateField('End of Academic Year')
-#     created = models.DateTimeField(auto_now_add=True)
-#     lastModified = models.DateTimeField(auto_now=True)
 
 
 # adding field of user_type
@@ -125,7 +109,6 @@ def create_user_profile(sender, instance, created, **kwargs):
         if instance.user_type == "student":
             Student.objects.create(admin=instance,
                                     programId=Program.objects.get(id=1),
-                                    # academicYrId=AcademicYear.objects.get(id=1),
                                     profilePic="",
                                     gender="")
      

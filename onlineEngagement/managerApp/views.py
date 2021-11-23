@@ -1,5 +1,6 @@
 from django.db.models.fields import EmailField
 from django.shortcuts import render, HttpResponse, redirect, HttpResponseRedirect
+from django.urls import reverse
 from django.contrib.auth import logout, authenticate, login
 from .models import *
 from django.contrib import messages
@@ -33,7 +34,7 @@ def loginForm(request):
     if(user.user_type == "student"):
         return redirect('../student_home/')
     elif(user.user_type == "faculty"):
-        return redirect('../student/')
+        return redirect('../faculty_home/')
     
     return render(request, 'home.html')
 

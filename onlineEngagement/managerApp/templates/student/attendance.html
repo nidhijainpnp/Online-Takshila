@@ -45,7 +45,7 @@ View Attendance
 					</div>
 					{% endif %}
 					
-					<form method="POST" action = "reverse(view_attendance)">
+					<form method="POST" action = "/view_attendance/">
 						{% csrf_token %}
 						
 						<div class="card-body">
@@ -53,7 +53,7 @@ View Attendance
 							<div class="form-group">
 								<label>Course </label>
 								<select class="form-control" name="subject" id="subject">
-									{% for row in course %}
+									{% for row in courses %}
 									<option value="{{ row.id }}">{{ row.courseName }}</option>
 									{% endfor %}
 								</select>
