@@ -68,19 +68,16 @@ class Student(models.Model):
     id = models.AutoField(primary_key=True)
     admin = models.OneToOneField(CustomUser, on_delete = models.CASCADE)
     gender = models.CharField(max_length=10,choices = sexChoice)
-  #  contactNo = PhoneNumberField(unique = True, null = False, blank = False)
     created = models.DateTimeField(auto_now_add=True)
     lastModified = models.DateTimeField(auto_now=True)
     profilePic = models.ImageField(null=True)
     programId = models.ForeignKey(Program, on_delete=models.DO_NOTHING, default=1)
-    # academicYrId = models.ForeignKey(AcademicYear, on_delete=models.CASCADE)
-
+    
 
 class Attendance(models.Model):
     id = models.AutoField(primary_key=True)
     course_id = models.ForeignKey(Courses, on_delete=models.DO_NOTHING)
     date = models.DateField()
-    # academicYr_id = models.ForeignKey(AcademicYear, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     lastModified = models.DateTimeField(auto_now=True)
 
