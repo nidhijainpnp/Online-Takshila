@@ -1,12 +1,12 @@
 # Online-Takshila
 Website is currently deployed at https://nidhijainpnp.pythonanywhere.com/.
 * Login credentials for:
-* Student dashboard:
-  *   Email_id : student\<i>@abc.com (where 1<=’i’<=6)
-  *   Password : abc
-* Faculty dashboard:
-  *   Email_id : faculty\<i>@abc.com (where 1<=’i’<=2)
-  *   Password : abc
+  * Student dashboard:
+    * Email_id : student\<i>@abc.com (where 1<=’i’<=6)
+    * Password : abc
+  * Faculty dashboard:
+     * Email_id : faculty\<i>@abc.com (where 1<=’i’<=2)
+     * Password : abc
 * Furthermore, anyone can register with the new credentials and could then login with the same.
 
 ## How To Run on Local System :
